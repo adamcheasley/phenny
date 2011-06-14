@@ -198,6 +198,16 @@ class Phenny(irc.Bot):
       bytes, event, args = args[0], args[1], args[2:]
       text = decode(bytes)
 
+      # adding my own logging here for my various nicks
+      my_nicks = ['red', 'pouch', 'pouchy', 'adam', 
+                  'pooch', 'chee']
+      for nick in my_nicks:
+         if nick in text.lower():
+            print text
+      # also adding logging for any uris
+      if 'http' in text.lower():
+         print text
+
       for priority in ('high', 'medium', 'low'): 
          items = self.commands[priority].items()
          for regexp, funcs in items: 
