@@ -14,7 +14,10 @@ from tools import deprecated
 def f_seen(self, origin, match, args): 
    """.seen <nick> - Reports when <nick> was last seen."""
    if origin.sender == '#talis': return
-   nick = match.group(2).lower()
+   nick = match.group(2)
+   if not nick: 
+      return self.msg(origin.sender, 'Seen who?')
+   nick = nick.lower()
    if not hasattr(self, 'seen'): 
       return self.msg(origin.sender, '?')
    if self.seen.has_key(nick): 
