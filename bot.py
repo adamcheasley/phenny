@@ -182,10 +182,17 @@ class Phenny(irc.Bot):
 
       return CommandInput(text, origin, bytes, match, event, args)
 
-   def call(self, func, origin, phenny, input): 
-      try: func(phenny, input)
-      except Exception, e: 
-         self.error(origin)
+   def call(self, func, origin, phenny, input):
+      if func.__name__ == 'blackball':
+         try:
+            func(phenny, input, origin)
+         except Exception, e:
+            self.error(origin)
+      else:
+         try: 
+            func(phenny, input)
+         except Exception, e: 
+            self.error(origin)
 
    def limit(self, origin, func): 
       if origin.sender and origin.sender.startswith('#'): 
