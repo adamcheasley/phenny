@@ -21,6 +21,7 @@ def decode(bytes):
    return text
 
 class Phenny(irc.Bot): 
+
    def __init__(self, config): 
       args = (config.nick, config.name, config.channels, config.password)
       irc.Bot.__init__(self, *args)

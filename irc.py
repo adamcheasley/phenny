@@ -24,7 +24,8 @@ class Origin(object):
       mappings = {bot.nick: self.nick, None: None}
       self.sender = mappings.get(target, target)
 
-class Bot(asynchat.async_chat): 
+class Bot(asynchat.async_chat):
+
    def __init__(self, nick, name, channels, password=None): 
       asynchat.async_chat.__init__(self)
       self.set_terminator('\n')
@@ -186,8 +187,6 @@ class TestBot(Bot):
    f_ping.rule = r'^\.ping(?:[ \t]+(\d+))?$'
 
 def main(): 
-   # bot = TestBot('testbot', ['#d8uv.com'])
-   # bot.run('irc.freenode.net')
    print __doc__
 
 if __name__=="__main__": 
