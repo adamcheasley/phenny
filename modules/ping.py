@@ -8,10 +8,11 @@ About: http://inamidst.com/phenny/
 import random
 
 def hello(phenny, input): 
-   greeting = random.choice(('Hi', 'Hey', 'Hello'))
+   greeting = random.choice(('Hi', 'Hey', 'Hello',
+                             'yo', 'word up', 'what up', 'sup'))
    punctuation = random.choice(('', '!'))
    phenny.say(greeting + ' ' + input.nick + punctuation)
-hello.rule = r'(?i)(hi|hello|hey) $nickname\b'
+hello.rule = r'(?i)(hi|hello|hey|yo) $nickname\b'
 
 def interjection(phenny, input): 
    phenny.say(input.nick + '!')
