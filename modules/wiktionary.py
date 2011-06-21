@@ -22,7 +22,7 @@ def text(html):
    text = text.replace('(transitive', '(trans.')
    return text
 
-def wiktionary(word): 
+def wiktionary(word):
    bytes = web.get(uri % web.urllib.quote(word.encode('utf-8')))
    bytes = r_ul.sub('', bytes)
 
@@ -73,6 +73,8 @@ def format(word, definitions, number=2):
 
 def w(phenny, input): 
    word = input.group(2)
+   if not word:
+      phenny.say('What?')
    etymology, definitions = wiktionary(word)
    if not definitions: 
       phenny.say("Couldn't get any definitions for %s." % word)
