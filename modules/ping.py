@@ -25,6 +25,8 @@ interjection.thread = False
 
 
 def greeting(phenny, input):
+   if input.nick == 'botston':
+      return
    greeting = random.choice(('Hi', 'Welcome', 'Good day', 'Nice to see you',
                              'Hello', 'Yo'))
    phenny.say('%s %s' % (greeting, input.nick))
