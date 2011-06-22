@@ -56,7 +56,7 @@ def stats(phenny, input):
       if name in ignore: continue
       if not user: continue
 
-      if not user.startswith('#'): 
+      if not user.startswith('#') and user != 'botston':
          try: users[user] += count
          except KeyError: users[user] = count
       else: 
@@ -85,7 +85,8 @@ def stats(phenny, input):
    # most heavy channels
    chreply = 'power channels: '
    for count, channel in charank[:3]: 
-      chreply += '%s (%s), ' % (channel, count)
+      if channel != 'botston':
+         chreply += '%s (%s), ' % (channel, count)
    phenny.say(chreply.rstrip(', '))
 stats.commands = ['stats']
 stats.priority = 'low'
