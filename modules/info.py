@@ -20,6 +20,7 @@ doc.rule = ('$nick', '(?i)(?:help|doc) +([A-Za-z]+)(?:\?+)?$')
 doc.example = '$nickname: doc tell?'
 doc.priority = 'low'
 
+
 def commands(phenny, input): 
    # This function only works in private message
    if input.sender.startswith('#'): return
@@ -29,6 +30,7 @@ def commands(phenny, input):
                "name of the command you want help for.") % phenny.nick)
 commands.commands = ['commands']
 commands.priority = 'low'
+
 
 def help(phenny, input): 
    response = (
@@ -40,13 +42,14 @@ def help(phenny, input):
 help.rule = ('$nick', r'(?i)help(?:[?!]+)?$')
 help.priority = 'low'
 
+
 def stats(phenny, input): 
    """Show information on command usage patterns."""
    commands = {}
    users = {}
    channels = {}
 
-   ignore = set(['f_note', 'startup', 'message', 'noteuri'])
+   ignore = set(['f_note', 'startup', 'message', 'noteuri', 'get_chat'])
    for (name, user), count in phenny.stats.items(): 
       if name in ignore: continue
       if not user: continue
