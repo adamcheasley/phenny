@@ -12,6 +12,7 @@ def blackball(phenny, input, origin):
     if input.sender.startswith('#'): 
         return phenny.say('pm .blackball <username> to nominate someone anonymously for a blackball-style ban from the channel.')
     blackballee = input.group(2)
+    # XXX can we get the host from input?
     blackballer = origin.host
     if not blackballee:
         return phenny.say('Who would you like to blackball?')

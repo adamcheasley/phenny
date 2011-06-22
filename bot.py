@@ -183,7 +183,7 @@ class Phenny(irc.Bot):
       return CommandInput(text, origin, bytes, match, event, args)
 
    def call(self, func, origin, phenny, input):
-      if func.__name__ in ['blackball', 'get_chat']:
+      if func.__name__ in ['blackball', ]:
          try:
             func(phenny, input, origin)
          except Exception, e:

@@ -6,13 +6,13 @@ import operator
 chat_data = []
 
 
-def get_chat(phenny, input, origin):
+def get_chat(phenny, input):
     """
     records the chat
     """
     raw_chat = input
-    channel = origin.sender
-    user = origin.nick
+    channel = input.sender
+    user = input.nick
     # do not record the command itself
     if raw_chat == u'.chat':
         return
