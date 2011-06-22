@@ -16,6 +16,7 @@ def get_chat(phenny, input):
     # do not record the command itself
     if raw_chat == u'.chat':
         return
+
     if len(chat_data) > 50:
         chat_data.pop(0)
     data = {'user' : user,
@@ -34,8 +35,11 @@ def chat(phenny, input):
     """
     # get main users
     user_count = {}
+    channel = input.sender
     for data in chat_data:
-        # XXX this needs to take into account the channel
+        # only look at the channel the command was sent from
+        if data['channel'] != channel:
+            continue
         user = data['user']
         if user not in user_count.keys():
             user_count[user] = 1
