@@ -36,7 +36,9 @@ def help(phenny, input):
    response = (
       'Hi, I\'m a bot. Say ".commands" to me in private for a list ' + 
       'of my commands, or see http://inamidst.com/phenny/ for more ' + 
-      'general details. My owner is %s.'
+      'general details. My owner is %s.' +
+      ' If you\'d like to see my source code, ' +
+      'check https://github.com/adamcheasley/phenny'
    ) % phenny.config.owner
    phenny.reply(response)
 help.rule = ('$nick', r'(?i)help(?:[?!]+)?$')
