@@ -25,7 +25,11 @@ interjection.thread = False
 
 
 def greeting(phenny, input):
+   # XXX take into account the users blackball count and greet accordingly
    if input.nick == 'botston':
+      return
+   # only greet people sometimes
+   if random.randint(0, 2) <= 1:
       return
    greeting = random.choice(('Hi', 'Welcome', 'Good day', 'Nice to see you',
                              'Hello', 'Yo'))
