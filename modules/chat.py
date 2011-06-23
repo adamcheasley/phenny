@@ -9,8 +9,8 @@ from string import letters
 
 
 chat_data = []
-ignored_words = [u'yo', u'ok', u'foo', u'hello',
-                 ]
+ignored_words = [u'hello', u'botston', u'nick',
+                 u'cool', ]
 
 
 def get_chat(phenny, input):
@@ -73,14 +73,22 @@ def chat(phenny, input):
 
     # at this point we're going to have to do some pretty expensive checking
     # each word for punctuation and non-letters
-    all_real_words = all_words.copy()
+    all_words = [x for x in all_words if not x.startswith(':')]
+    all_real_words = set(all_words)
     for word in all_words:
         expanded_word = [x for x in word]
         for letter in expanded_word:
             if letter not in letters:
+                try:
+                    all_real_words.remove(word)
+                except KeyError:
+                    continue
+        if word.lower() in ignored_words \
+                or len(word) < 4:
+            try:
                 all_real_words.remove(word)
-        if word.lower() in ignored_words:
-            all_real_words.remove(word)
+            except KeyError:
+                continue
     
     # create a tuple of all words and their frequency and a list of 
     # all dicitonary words
@@ -90,21 +98,23 @@ def chat(phenny, input):
     dictionary_words = [x[1] for x in freq_word]
     for posted_word in all_real_words:
         for word in freq_word:
-            if posted_word == word[1] and word[0] < 5000:
+            if posted_word == word[1] and word[0] < 6000:
                 interesting_words.append(posted_word)
         if posted_word.lower() not in dictionary_words:
             rare_words.append(posted_word)
     
     # format the words and post them to the channel
     if not interesting_words and not rare_words:
-        return phenny.say('They\'ve not been talking about anything interesting')
+        return phenny.say(
+            'They\'ve not been talking about anything interesting'
+            )
     if interesting_words:
         phenny.say('They have been talking about:') 
-        for word in interesting_words:
+        for word in interesting_words[:5]:
             phenny.say('%s' % word)
     if rare_words:
         phenny.say('They have also been talking about:')
-        for word in rare_words:
+        for word in rare_words[:5]:
             phenny.say('%s' % word)
 
 chat.commands = ['chat']
