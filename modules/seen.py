@@ -8,6 +8,7 @@ http://inamidst.com/phenny/
 """
 
 import time
+import pickle
 from tools import deprecated
 
 
@@ -18,7 +19,7 @@ def f_seen(self, origin, match, args):
    nick = match.group(2)
    if not nick: 
       return self.msg(origin.sender, 'Seen who?')
-   nick = nick.lower()
+   nick = nick.lower()   
    if not hasattr(self, 'seen'): 
       return self.msg(origin.sender, '?')
    if self.seen.has_key(nick): 
@@ -33,12 +34,25 @@ f_seen.rule = (['seen'], r'(\S+)')
 
 @deprecated
 def f_note(self, origin, match, args): 
-   def note(self, origin, match, args): 
-      if not hasattr(self.bot, 'seen'): 
-         self.bot.seen = {}
-      if origin.sender.startswith('#'): 
-         # if origin.sender == '#inamidst': return
+   def note(self, origin, match, args):
+      if not hasattr(self.bot, 'seen'):         
+         try:
+            seen_file = open('seen.pkl', 'rb')
+         except IOError:
+            seen_data = {}
+         else:
+            try:
+               seen_data = pickle.load(seen_file)
+            except EOFError:
+               seen_data = {}
+            seen_file.close()
+         self.bot.seen = seen_data
+      if origin.sender.startswith('#'):
+         seen_file = open('seen.pkl', 'wb')
          self.seen[origin.nick.lower()] = (origin.sender, time.time())
+         pickle.dump(self.seen, seen_file)
+         
+      seen_file.close()
 
    try: note(self, origin, match, args)
    except Exception, e: print e
