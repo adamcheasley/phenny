@@ -9,7 +9,7 @@ from string import letters
 
 
 chat_data = []
-ignored_words = [u'hello', u'botston', u'nick',
+ignored_words = [u'hello', u'botston', u'nick', u'sweet', 
                  u'cool', ]
 
 
