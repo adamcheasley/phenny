@@ -9,7 +9,7 @@ from string import letters
 
 
 chat_data = []
-ignored_words = [u'hello', u'botston', u'nick', u'sweet', 
+ignored_words = [u'hello', u'botston', u'nick', u'sweet', u'skip', u'arent'
                  u'cool', ]
 
 
@@ -113,7 +113,7 @@ def chat(phenny, input):
         for word in interesting_words[:5]:
             phenny.say('%s' % word)
     if rare_words:
-        phenny.say('They have also been talking about:')
+        phenny.say('They have also been chatting about:')
         for word in rare_words[:5]:
             phenny.say('%s' % word)
 
