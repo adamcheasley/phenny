@@ -5,12 +5,15 @@ http://pypi.python.org/pypi/textmining
 """
 import textmining
 import operator
+from datetime import datetime
+from datetime import timedelta
 from string import letters
 
 
 chat_data = []
-ignored_words = [u'hello', u'botston', u'nick', u'sweet', u'skip', u'arent'
-                 u'cool', ]
+ignored_words = [u'hello', u'botston', u'nick', u'sweet', u'skip', u'arent',
+                 u'cool', u'tunk', ]
+last_chat = datetime.now()
 
 
 def get_chat(phenny, input):
@@ -31,6 +34,8 @@ def get_chat(phenny, input):
             'chat' : raw_chat
             }
     chat_data.append(data)
+    global last_chat
+    last_chat = datetime.now()
 
 get_chat.rule = r'(.*)'
 get_chat.priority = 'low'
@@ -57,8 +62,13 @@ def chat(phenny, input):
     # sort the dict
     sorted_users = sorted(user_count.iteritems(), key=operator.itemgetter(1))
     sorted_users.reverse()
+    # if there's less than 2 users chatting
     if len(sorted_users) < 2:
-        return phenny.say("No one's been chatting that much")    
+        return phenny.say("No one's been chatting that much")
+    # if the chat was more than an hour ago.
+    if datetime.now() < last_chat - timedelta(hours=1):
+        return phenny.say("No one's been chatting recently")
+
     phenny.say('Users %s and %s have been chatting mostly' % (
             sorted_users[0][0], sorted_users[1][0]))
     
@@ -102,6 +112,8 @@ def chat(phenny, input):
                 interesting_words.append(posted_word)
         if posted_word.lower() not in dictionary_words:
             rare_words.append(posted_word)
+
+    phenny.say(str(last_chat))
     
     # format the words and post them to the channel
     if not interesting_words and not rare_words:
@@ -109,13 +121,15 @@ def chat(phenny, input):
             'They\'ve not been talking about anything interesting'
             )
     if interesting_words:
-        phenny.say('They have been talking about:') 
+        message = 'They have been talking about:'        
         for word in interesting_words[:5]:
-            phenny.say('%s' % word)
+            message = message + ' ' + word
+        phenny.say(message)
     if rare_words:
-        phenny.say('They have also been chatting about:')
+        message = 'They have also been chatting about:'
         for word in rare_words[:5]:
-            phenny.say('%s' % word)
+            message = message + ' ' + word
+        phenny.say(message)
 
 chat.commands = ['chat']
 chat.priority = 'low'
