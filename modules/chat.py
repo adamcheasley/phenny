@@ -114,7 +114,7 @@ def chat(phenny, input):
             rare_words.append(posted_word)
 
     # format the words and post them to the channel
-    if not interesting_words and not rare_words:
+    if not interesting_words:
         return phenny.say(
             'They\'ve not been talking about anything interesting'
             )
