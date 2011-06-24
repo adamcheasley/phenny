@@ -123,7 +123,7 @@ def chat(phenny, input):
         for word in interesting_words[:5]:
             message = message + ' ' + word
         phenny.say(message)
-    if rare_words:
+    if interesting_words and rare_words:
         message = 'They have also been chatting about:'
         for word in rare_words[:5]:
             message = message + ' ' + word
