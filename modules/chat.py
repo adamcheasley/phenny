@@ -113,8 +113,6 @@ def chat(phenny, input):
         if posted_word.lower() not in dictionary_words:
             rare_words.append(posted_word)
 
-    phenny.say(str(last_chat))
-    
     # format the words and post them to the channel
     if not interesting_words and not rare_words:
         return phenny.say(
