@@ -94,7 +94,7 @@ def chat(phenny, input):
                 except KeyError:
                     continue
         if word.lower() in ignored_words \
-                or len(word) < 4:
+                or len(word) < 4 or len(word) > 25:
             try:
                 all_real_words.remove(word)
             except KeyError:
