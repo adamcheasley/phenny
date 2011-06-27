@@ -65,14 +65,13 @@ def chat(phenny, input):
     # if there's less than 2 users chatting
     if len(sorted_users) < 2:
         return phenny.say("No one's been chatting that much")
-    # if the chat was more than an hour ago.
-    if datetime.now() < last_chat - timedelta(hours=1):
+    # if the chat was more than an 30 minutes ago.
+    if datetime.now() > last_chat + timedelta(minutes=30):
         return phenny.say("No one's been chatting recently")
-
     phenny.say('Users %s and %s have been chatting mostly' % (
             sorted_users[0][0], sorted_users[1][0]))
     
-    # look through for unusual words
+    # create a set of words
     all_words = set()
     interesting_words = []
     rare_words = []
@@ -109,8 +108,11 @@ def chat(phenny, input):
     for posted_word in all_real_words:
         for word in freq_word:
             if posted_word == word[1] and word[0] < 6000:
+                # these are words with a lower fequency i.e. unusal words 
+                # in the dictionary
                 interesting_words.append(posted_word)
         if posted_word.lower() not in dictionary_words:
+            # these are words that are not in the dictionary
             rare_words.append(posted_word)
 
     # format the words and post them to the channel
