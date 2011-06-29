@@ -3,6 +3,7 @@
 This module requires textmining to be installed:
 http://pypi.python.org/pypi/textmining
 """
+import re
 import textmining
 import operator
 from datetime import datetime
@@ -86,6 +87,15 @@ def chat(phenny, input):
     all_words = [x for x in all_words if not x.startswith(':')]
     all_real_words = set(all_words)
     for word in all_words:
+        # search for words with more than 2 letters in a row
+        look = re.compile(r'(\w)\1{2,}')
+        if look.search(word):
+            try:
+                all_real_words.remove(word)
+            except KeyError:
+                continue
+        # XXX this needs to be a regex
+        # search for words with punctuation
         expanded_word = [x for x in word]
         for letter in expanded_word:
             if letter not in letters:
@@ -134,4 +144,3 @@ def chat(phenny, input):
 
 chat.commands = ['chat']
 chat.priority = 'low'
-
