@@ -7,6 +7,7 @@ Licensed under the Eiffel Forum License 2.
 http://inamidst.com/phenny/
 """
 
+import time
 import sys, os, re, threading, imp
 import irc
 
@@ -228,6 +229,12 @@ class Phenny(irc.Bot):
 
                   phenny = self.wrapped(origin, text, match)
                   input = self.input(origin, text, bytes, match, event, args)
+                  
+                  # if told to shut up, pause execution
+                  if input ==  u'botston: shutup':
+                     phenny.say('sorry :(')
+                     print '---------- PAUSING ----------'
+                     time.sleep(3600)
 
                   if func.thread: 
                      targs = (func, origin, phenny, input)
