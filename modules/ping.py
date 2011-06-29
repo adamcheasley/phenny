@@ -34,6 +34,8 @@ def greeting(phenny, input):
       return
    if rand_num == 3:
       return phenny.say('Greetings, Professor Falken. Would you like to play a game?')
+   if len(input.nick) < 3:
+      return
    greeting = random.choice(('Hi', 'Welcome', 'Good day', 'Nice to see you',
                              'Hello', 'Yo'))
    phenny.say('%s %s' % (greeting, input.nick))
