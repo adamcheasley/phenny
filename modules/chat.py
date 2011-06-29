@@ -118,7 +118,7 @@ def chat(phenny, input):
     dictionary_words = [x[1] for x in freq_word]
     for posted_word in all_real_words:
         for word in freq_word:
-            if posted_word == word[1] and word[0] < 6000:
+            if posted_word == word[1] and word[0] < 4000:
                 # these are words with a lower fequency i.e. unusal words 
                 # in the dictionary
                 interesting_words.append(posted_word)
