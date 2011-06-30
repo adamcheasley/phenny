@@ -14,7 +14,7 @@ from string import letters
 chat_data = []
 ignored_words = [u'hello', u'botston', u'nick', u'sweet', u'skip', u'arent', 
                  u'remeber', u'cool', u'tunk', u'desk', u'innit',  u'ohai', 
-                 u'gotta', u'mins', u'thats', ]
+                 u'gotta', u'mins', u'thats', u'evite', ]
 last_chat = datetime.now()
 
 
