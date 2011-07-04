@@ -42,7 +42,6 @@ class Phenny(irc.Bot):
       else: 
          for fn in self.config.enable: 
             filenames.append(os.path.join(home, 'modules', fn + '.py'))
-      # @@ exclude
 
       if hasattr(self.config, 'extra'): 
          for fn in self.config.extra: 
