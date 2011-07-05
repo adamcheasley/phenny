@@ -230,7 +230,7 @@ class Phenny(irc.Bot):
                   input = self.input(origin, text, bytes, match, event, args)
                   
                   # if told to shut up, pause execution
-                  if input ==  u'botston: shutup':
+                  if input ==  u'%s: shutup' % self.nick:
                      phenny.say('sorry :(')
                      print '---------- PAUSING ----------'
                      time.sleep(3600)
