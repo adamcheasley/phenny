@@ -35,6 +35,8 @@ def location(name):
    u.close()
 
    results = json(bytes)
+   if not results.has_key('geonames'):
+      return '?', '?', '0', '0'
    try: name = results['geonames'][0]['name']
    except IndexError: 
       return '?', '?', '0', '0'
