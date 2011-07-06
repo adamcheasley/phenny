@@ -61,8 +61,6 @@ def local(icao, hour, minute):
       lhour = lhour % 24
       return (str(lhour) + ':' + str(minute) + ', ' + str(hour) + 
               str(minute) + 'Z')
-      # return (str(lhour) + ':' + str(minute) + ' (' + str(hour) + 
-      #         ':' + str(minute) + 'Z)')
    return str(hour) + ':' + str(minute) + 'Z'
 
 def code(phenny, search): 
