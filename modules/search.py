@@ -93,9 +93,15 @@ def gcs(phenny, input):
       if i >= 4: __import__('time').sleep(0.25)
 
    results = [(term, n) for (n, term) in reversed(sorted(results))]
-   reply = ', '.join('%s (%s)' % (t, formatnumber(n)) for (t, n) in results)
+   reply = ', '.join('%s (%s)' % (t, formatnumber(n)) for (t, n) in results)   
    phenny.say(reply)
-gcs.commands = ['gcs', 'comp']
+   score = 0
+   for result in results:
+      if result[1] > score:
+         score = result[1]
+         winner = result[0]
+   phenny.say('The winner is %s!' % winner)
+gcs.commands = ['gcs', 'comp', 'fight']
 
 if __name__ == '__main__': 
    print __doc__.strip()
