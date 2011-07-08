@@ -16,7 +16,8 @@ last_chat = datetime.now()
 ignored_words = [u'hello', u'botston', u'nick', u'sweet', u'skip', u'arent', 
                  u'remeber', u'cool', u'tunk', u'desk', u'innit',  u'ohai', 
                  u'gotta', u'mins', u'thats', u'evite', u'stayin', u'awsm',
-                 u'hutt', u'doesnt', ]
+                 u'hutt', u'doesnt', u'wont', u'dont', u'haha', u'yarp', u'didnt', 
+                 ]
 
 
 def get_chat(phenny, input):
@@ -118,7 +119,7 @@ def chat(phenny, input):
     # all dicitonary words
     freq_word = [(counts[0][0], word) for (word, counts) in \
                      textmining.dictionary.items()]
-    freq_word.sort(reverse=True)
+
     dictionary_words = [x[1] for x in freq_word]
     for posted_word in all_real_words:
         for word in freq_word:
