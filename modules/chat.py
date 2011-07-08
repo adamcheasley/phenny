@@ -16,7 +16,7 @@ last_chat = datetime.now()
 ignored_words = [u'hello', u'botston', u'nick', u'sweet', u'skip', u'arent', 
                  u'remeber', u'cool', u'tunk', u'desk', u'innit',  u'ohai', 
                  u'gotta', u'mins', u'thats', u'evite', u'stayin', u'awsm',
-                 u'hutt', ]
+                 u'hutt', u'doesnt', ]
 
 
 def get_chat(phenny, input):
@@ -51,7 +51,10 @@ def chat(phenny, input):
     # get main users
     user_count = {}
     raw_chat = []
-    channel = input.sender
+    if input.match.group(2):
+        channel = input.match.group(2)
+    else:
+        channel = input.sender
     for data in chat_data:
         # only look at the channel the command was sent from
         if data['channel'] != channel:
@@ -143,5 +146,5 @@ def chat(phenny, input):
             message = message + ' ' + word
         phenny.say(message)
 
-chat.commands = ['chat']
+chat.rule = (['chat'], r'(.*)')
 chat.priority = 'low'
