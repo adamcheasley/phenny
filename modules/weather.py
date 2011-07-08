@@ -65,7 +65,7 @@ def local(icao, hour, minute):
 
 def code(phenny, search): 
    from icao import data
-   
+
    if search.upper() in [loc[0] for loc in data]:
       return search.upper()
    else:
@@ -402,13 +402,6 @@ def f_weather(self, origin, match, args):
             phenomenon = phenomena.get(c, c)
             if cond: cond += ', '
             cond += phenomenon
-
-   # if not cond: 
-   #    format = u'%s at %s: %s, %s, %s, %s'
-   #    args = (icao, time, cover, temp, pressure, wind)
-   # else: 
-   #    format = u'%s at %s: %s, %s, %s, %s, %s'
-   #    args = (icao, time, cover, temp, pressure, cond, wind)
 
    if not cond: 
       format = u'%s, %s, %s, %s - %s %s'
