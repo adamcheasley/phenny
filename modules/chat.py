@@ -13,6 +13,8 @@ from string import letters
 
 chat_data = []
 last_chat = datetime.now()
+freq_word = [(counts[0][0], word) for (word, counts) in \
+                 textmining.dictionary.items()]
 ignored_words = [u'hello', u'botston', u'nick', u'sweet', u'skip', u'arent', 
                  u'remeber', u'cool', u'tunk', u'desk', u'innit',  u'ohai', 
                  u'gotta', u'mins', u'thats', u'evite', u'stayin', u'awsm',
@@ -115,11 +117,6 @@ def chat(phenny, input):
             except KeyError:
                 continue
     
-    # create a tuple of all words and their frequency and a list of 
-    # all dicitonary words
-    freq_word = [(counts[0][0], word) for (word, counts) in \
-                     textmining.dictionary.items()]
-
     dictionary_words = [x[1] for x in freq_word]
     for posted_word in all_real_words:
         for word in freq_word:
