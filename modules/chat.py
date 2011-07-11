@@ -20,7 +20,8 @@ ignored_words = [u'hello', u'nick', u'sweet', u'skip', u'arent', u'daed',
                  u'remeber', u'cool', u'desk', u'innit',  u'ohai', u'yerrite',
                  u'gotta', u'mins', u'thats', u'evite', u'stayin', u'awsm',
                  u'hutt', u'doesnt', u'wont', u'dont', u'haha', u'yarp', u'didnt', 
-                 u'unfollow', u'blog', u'goto', u'zomg', ]
+                 u'unfollow', u'blog', u'goto', u'zomg', u'gonna', u'hopefully',
+                 u'hehe', u'lols', ]
 
 
 def get_chat(phenny, input):
