@@ -90,11 +90,11 @@ def chat(phenny, input):
     for chat in raw_chat:
         chat_list = chat.split()
         for s_word in chat_list:
-            all_words.add(s_word)
+            if not s_word.startswith(':'):
+                all_words.add(s_word)
 
     # at this point we're going to have to do some pretty expensive checking
     # each word for punctuation and non-letters
-    all_words = [x for x in all_words if not x.startswith(':')]
     all_real_words = set(all_words)
     for word in all_words:
         # search for words with more than 2 letters in a row
