@@ -24,7 +24,7 @@ def f_seen(self, origin, match, args):
       return self.msg(origin.sender, '?')
    if self.seen.has_key(nick): 
       channel, t = self.seen[nick]
-      t = time.strftime('%H:%M (UTC) %d/%m/%Y', time.localtime(t))
+      t = time.strftime('%H:%M %d/%m/%Y', time.localtime(t))
 
       msg = "I last saw %s at %s on %s" % (nick, t, channel)
       self.msg(origin.sender, str(origin.nick) + ': ' + msg)
