@@ -19,7 +19,8 @@ temp_ignores = []
 ignored_words = [u'hello', u'nick', u'sweet', u'skip', u'arent', u'daed', 
                  u'remeber', u'cool', u'desk', u'innit',  u'ohai', u'yerrite',
                  u'gotta', u'mins', u'thats', u'evite', u'stayin', u'awsm',
-                 u'hutt', u'doesnt', u'wont', u'dont', u'haha', u'yarp', u'didnt', 
+                 u'hutt', u'doesnt', u'wont', u'dont', u'haha', u'yarp', 
+                 u'didnt', u'isnt', u'hasnt',
                  u'unfollow', u'blog', u'goto', u'zomg', u'gonna', u'hopefully',
                  u'hehe', u'lols', ]
 
@@ -127,9 +128,10 @@ def chat(phenny, input):
                 # these are words with a lower fequency i.e. unusal words 
                 # in the dictionary
                 interesting_words.append(posted_word)
-        if posted_word.lower() not in dictionary_words:
+        if (posted_word.lower() not in dictionary_words) \
+                and (posted_word.lower() not in rare_words):
             # these are words that are not in the dictionary
-            rare_words.append(posted_word)
+            rare_words.append(posted_word.lower())
 
     # format the words and post them to the channel
     if not interesting_words:
