@@ -55,6 +55,7 @@ def chat(phenny, input):
     tells the user who has been chatting and about what
     """
     # get main users
+    global chat_data
     user_count = {}
     raw_chat = []
     if input.match.group(2):
@@ -79,7 +80,8 @@ def chat(phenny, input):
         return phenny.say("No one's been chatting that much")
     # if the chat was more than an 30 minutes ago.
     if datetime.now() > last_chat + timedelta(minutes=30):
-        return phenny.say("No one's been chatting recently")
+        chat_data = []
+        return phenny.say("No one's been chatting recently")    
     phenny.say('Users %s and %s have been chatting mostly' % (
             sorted_users[0][0], sorted_users[1][0]))
     
