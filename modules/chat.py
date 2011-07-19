@@ -20,9 +20,9 @@ ignored_words = [u'hello', u'nick', u'sweet', u'skip', u'arent', u'daed',
                  u'remeber', u'cool', u'desk', u'innit',  u'ohai', u'yerrite',
                  u'gotta', u'mins', u'thats', u'evite', u'stayin', u'awsm',
                  u'hutt', u'doesnt', u'wont', u'dont', u'haha', u'yarp', 
-                 u'didnt', u'isnt', u'hasnt',
+                 u'didnt', u'isnt', u'hasnt', u'havent', u'plox', u'cheers',
                  u'unfollow', u'blog', u'goto', u'zomg', u'gonna', u'hopefully',
-                 u'hehe', u'lols', ]
+                 u'hehe', u'lols', u'dude', ]
 
 
 def get_chat(phenny, input):
@@ -78,8 +78,8 @@ def chat(phenny, input):
     # if there's less than 2 users chatting
     if len(sorted_users) < 2:
         return phenny.say("No one's been chatting that much")
-    # if the chat was more than an 30 minutes ago.
-    if datetime.now() > last_chat + timedelta(minutes=30):
+    # if the chat was more than an 15 minutes ago.
+    if datetime.now() > last_chat + timedelta(minutes=15):
         chat_data = []
         return phenny.say("No one's been chatting recently")    
     phenny.say('Users %s and %s have been chatting mostly' % (
