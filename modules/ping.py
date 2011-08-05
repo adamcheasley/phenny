@@ -14,7 +14,7 @@ def hello(phenny, input):
                              'sup', 'yeah'))
    punctuation = random.choice(('', '!'))
    phenny.say(greeting + ' ' + input.nick + punctuation)
-hello.rule = r'(?i)(hi|hello|hey|yo|sup) $nickname\b'
+hello.rule = r'(?i)(hi|hello|hey|yo|sup|ohai) $nickname\b'
 
 
 def interjection(phenny, input): 
@@ -25,8 +25,11 @@ interjection.thread = False
 
 
 def greeting(phenny, input):
+   # XXX by pass this for now.
+   # DO NOT CHECK IN
+   return
    # XXX take into account the users blackball count and greet accordingly
-   if input.nick == 'botston':
+   if input.nick == phenny.nick:
       return
    # only greet people sometimes
    rand_num = random.randint(0, 3)
