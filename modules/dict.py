@@ -9,7 +9,7 @@ http://inamidst.com/phenny/
 
 import re, urllib
 import web
-from tools import deprecated
+
 
 r_li = re.compile(r'(?ims)<li>.*?</li>')
 r_tag = re.compile(r'<[^>]+>')
@@ -31,6 +31,8 @@ def dict(phenny, input):
       return thing.strip(' :.')
 
    bytes = web.get(uri % word)
+   if not bytes:
+      return phenny.say('Sorry :(')
    results = {}
    wordkind = None
    for kind, sense in r_info.findall(bytes): 
