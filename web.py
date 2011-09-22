@@ -18,7 +18,10 @@ urllib._urlopener = Grab()
 def get(uri): 
    if not uri.startswith('http'): 
       return
-   u = urllib.urlopen(uri)
+   try:
+      u = urllib.urlopen(uri)
+   except IOError:
+      return None
    bytes = u.read()
    u.close()
    return bytes
@@ -40,5 +43,3 @@ def post(uri, query):
    u.close()
    return bytes
 
-if __name__=="__main__": 
-   main()
