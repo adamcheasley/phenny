@@ -79,7 +79,13 @@ r_query = re.compile(
    r'\+?"[^"\\]*(?:\\.[^"\\]*)*"|\[[^]\\]*(?:\\.[^]\\]*)*\]|\S+'
 )
 
-def gcs(phenny, input): 
+def gcs(phenny, input):
+   """
+   count with google
+   """
+   main_input = input.group(2)
+   if main_input is None:
+      return phenny.reply('Please enter at least two things.')
    queries = r_query.findall(input.group(2))
    if len(queries) > 6: 
       return phenny.reply('Sorry, can only compare up to six things.')
