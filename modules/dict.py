@@ -23,6 +23,8 @@ r_info = re.compile(
 
 def dict(phenny, input): 
    word = input.group(2)
+   if word is None:
+      return phenny.reply('Please enter a word to define.')
    word = urllib.quote(word.encode('utf-8'))
 
    def trim(thing): 
@@ -32,7 +34,7 @@ def dict(phenny, input):
 
    bytes = web.get(uri % word)
    if not bytes:
-      return phenny.say('Sorry :(')
+      return phenny.say('Sorry. This function relied on Encarta, which Microsoft has discontinued!')
    results = {}
    wordkind = None
    for kind, sense in r_info.findall(bytes): 
