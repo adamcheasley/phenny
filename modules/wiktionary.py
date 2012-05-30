@@ -22,7 +22,7 @@ def text(html):
    text = text.replace('(transitive', '(trans.')
    return text
 
-def wiktionary(word):
+def wiktionary(word): 
    bytes = web.get(uri % web.urllib.quote(word.encode('utf-8')))
    bytes = r_ul.sub('', bytes)
 
@@ -72,9 +72,9 @@ def format(word, definitions, number=2):
    return result.strip(' .,')
 
 def w(phenny, input): 
+   if not input.group(2):
+      return phenny.reply("Nothing to define.")
    word = input.group(2)
-   if not word:
-      phenny.say('What?')
    etymology, definitions = wiktionary(word)
    if not definitions: 
       phenny.say("Couldn't get any definitions for %s." % word)
@@ -91,6 +91,10 @@ def w(phenny, input):
    phenny.say(result)
 w.commands = ['w']
 w.example = '.w bailiwick'
+
+def encarta(phenny, input): 
+   return phenny.reply('Microsoft removed Encarta, try .w instead!')
+encarta.commands = ['dict']
 
 if __name__ == '__main__': 
    print __doc__.strip()
