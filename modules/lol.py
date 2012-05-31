@@ -4,7 +4,10 @@ import urllib
 import web
 
 def lol(phenny, input):
-    url = 'http://speaklolcat.com/?from=%s' % urllib.quote(input.group(2))
+    main_input = input.group(2)
+    if not main_input:
+        return phenny.say('Give me something to translate!')
+    url = 'http://speaklolcat.com/?from=%s' % urllib.quote(main_input)
     bytes = web.get(url)
     start = bytes.index('<div id="text">');
     start = bytes.index('</p>', start);
