@@ -206,7 +206,7 @@ class Phenny(irc.Bot):
       bytes, event, args = args[0], args[1], args[2:]
       text = decode(bytes)
 
-      for priority in ('high', 'medium', 'low'): 
+      for priority in ('high', 'medium', 'low'):         
          items = self.commands[priority].items()
          for regexp, funcs in items: 
             for func in funcs: 
@@ -214,8 +214,8 @@ class Phenny(irc.Bot):
 
                match = regexp.match(text)
                if match: 
-                  if self.limit(origin, func): continue
-
+                  if self.limit(origin, func):
+                     continue                  
                   phenny = self.wrapped(origin, text, match)
                   input = self.input(origin, text, bytes, match, event, args)
                   
@@ -225,7 +225,7 @@ class Phenny(irc.Bot):
                      print '---------- PAUSING ----------'
                      time.sleep(60)
 
-                  if func.thread: 
+                  if func.thread:
                      targs = (func, origin, phenny, input)
                      t = threading.Thread(target=self.call, args=targs)
                      t.start()
