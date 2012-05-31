@@ -375,28 +375,31 @@ def f_weather(self, origin, match, *args):
          'SH': 'Showers'
       }
 
-      for c in conds: 
-         if c.endswith('//'): 
+      for single_cond in conds: 
+         if single_cond.endswith('//'): 
             if cond: cond += ', '
             cond += 'Some Precipitation'
-         elif len(c) == 5: 
-            intensity = intensities[c[0]]
-            descriptor = descriptors[c[1:3]]
-            phenomenon = phenomena.get(c[3:], c[3:])
+         elif len(single_cond) == 5: 
+            intensity = intensities[single_cond[0]]
+            try:
+               descriptor = descriptors[single_cond[1:3]]
+            except KeyError:
+               descriptor = ''
+            phenomenon = phenomena.get(single_cond[3:], single_cond[3:])
             if cond: cond += ', '
             cond += intensity + ' ' + descriptor + ' ' + phenomenon
-         elif len(c) == 4: 
-            descriptor = descriptors.get(c[:2], c[:2])
-            phenomenon = phenomena.get(c[2:], c[2:])
+         elif len(single_cond) == 4: 
+            descriptor = descriptors.get(single_cond[:2], single_cond[:2])
+            phenomenon = phenomena.get(single_cond[2:], single_cond[2:])
             if cond: cond += ', '
             cond += descriptor + ' ' + phenomenon
-         elif len(c) == 3: 
-            intensity = intensities.get(c[0], c[0])
-            phenomenon = phenomena.get(c[1:], c[1:])
+         elif len(single_cond) == 3: 
+            intensity = intensities.get(single_cond[0], single_cond[0])
+            phenomenon = phenomena.get(single_cond[1:], single_cond[1:])
             if cond: cond += ', '
             cond += intensity + ' ' + phenomenon
-         elif len(c) == 2: 
-            phenomenon = phenomena.get(c, c)
+         elif len(single_cond) == 2: 
+            phenomenon = phenomena.get(single_cond, single_cond)
             if cond: cond += ', '
             cond += phenomenon
 
