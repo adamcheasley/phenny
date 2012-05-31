@@ -223,7 +223,7 @@ class Phenny(irc.Bot):
                   if input ==  u'%s: shutup' % self.nick:
                      phenny.say('sorry :(')
                      print '---------- PAUSING ----------'
-                     time.sleep(3000)
+                     time.sleep(60)
 
                   if func.thread: 
                      targs = (func, origin, phenny, input)
