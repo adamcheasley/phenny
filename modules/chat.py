@@ -31,7 +31,6 @@ def get_chat(phenny, input):
     """
     records the chat
     """
-    import pdb; pdb.set_trace()
     raw_chat = input
     channel = input.sender
     user = input.nick
